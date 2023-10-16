@@ -1,0 +1,32 @@
+#!/bin/bash
+
+while true; do
+    clear  # Clear the screen
+    echo "Menu Options:"
+    echo "1. Hello world"
+    echo "2. Ping self"
+    echo "3. IP info"
+    echo "4. Exit"
+    read -p "Select an option (1/2/3/4): " choice
+
+    case $choice in
+        1)
+            echo "Hello world!"
+            ;;
+        2)
+            ping -c 4 127.0.0.1  # Ping the loopback address (localhost)
+            ;;
+        3)
+            ifconfig  # Display network adapter information
+            ;;
+        4)
+            echo "Exiting the menu."
+            exit 0
+            ;;
+        *)
+            echo "Invalid option. Please select a valid option (1/2/3/4)."
+            ;;
+    esac
+
+    read -n 1 -s -r -p "Press any key to continue..."
+done
