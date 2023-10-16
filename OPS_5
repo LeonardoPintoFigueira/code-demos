@@ -1,0 +1,44 @@
+#!/bin/bash
+#Name: Leonardo Pinto
+#Date: 13/10/2023
+#Function: Clearing Logs
+
+
+# Set the backup directory path and current timestamp
+backup_dir="/var/log/backups"
+timestamp=$(date +'%Y%m%d%H%M%S')
+
+# List of log files to be compressed
+log_files=("/var/log/journal" "/var/log/wtmp")
+
+compress_and_backup() {
+  local file="$1"
+  local compressed_file="${backup_dir}/$(basename "$file")-${timestamp}.zip"
+
+  original_size=$(du -h "$file" | cut -f1)
+  echo "Original file size of $file: $original_size"
+
+  gzip -c "$file" > "$compressed_file"
+
+  truncate -s 0 "$file"
+
+  compressed_size=$(du -h "$compressed_file" | cut -f1)
+  echo "Compressed file size: $compressed_size"
+
+
+  echo "Size comparison:"
+  echo "Original file size: $original_size"
+  echo "Compressed file size: $compressed_size"
+}
+
+
+mkdir -p "$backup_dir"
+
+
+for log_file in "${log_files[@]}"; do
+  if [ -e "$log_file" ]; then
+    compress_and_backup "$log_file"
+  else
+    echo "Log file $log_file not found."
+  fi
+done
