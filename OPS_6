@@ -1,0 +1,34 @@
+#!/bin/python3
+#Name: Leonardo
+#Date: 16 October, 2023
+#Objectives: Execute bash commands
+
+import os
+
+#List of the commands
+
+command1 = "whoami"
+
+command2 = "ip a | grep inet"
+
+command3 = "lshw -short"
+
+
+#Executing Commands
+
+print("Executing: " + command1)
+
+os.system(command1)
+print("\n")
+
+
+print("Executing: " + command2)
+print("\n")
+os.system(command2)
+print("\n")
+
+
+print("Executing: " + command3)
+print("\n")
+os.system(command3)
+print("\n")
