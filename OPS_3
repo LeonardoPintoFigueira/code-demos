@@ -1,0 +1,75 @@
+#!/bin/bash
+
+
+# Prompt the user for the input directory path
+read -p "Enter the directory path: " directory_path
+
+
+# Check if the directory exists
+if [ ! -d "$directory_path" ]; then
+echo "Error: The directory does not exist."
+exit 1
+fi
+
+
+# Prompt the user for the input permissions number
+read -p "Enter the permissions number (e.g. 777): " permissions
+
+
+# Change permissions of all files in the directory
+chmod -R "$permissions" "$directory_path"
+
+
+# Print directory contents and new permissions settings
+echo "Directory Contents:"
+ls -l "$directory_path"
+
+
+echo "New Permissions Settings:"
+
+#!/bin/bash
+
+# Set the log file path
+log_file="script_log.txt"
+
+# Function to log actions
+log_action() {
+  local message="$1"
+  echo "$(date '+%Y-%m-%d %H:%M:%S') - $message" >> "$log_file"
+}
+
+# Function to perform an action on a file with a delay
+perform_action() {
+  local file="$1"
+  local action="$2"
+  local delay="$3"
+
+  # Log the action
+  log_action "Performing action '$action' on file: $file"
+
+  # Output the action to the screen
+  echo "Performing action '$action' on file: $file"
+
+  # Perform the action (e.g., copy, move, delete, etc.)
+  # Replace the following line with your actual action
+  # Example: cp "$file" /destination/
+  # Example: mv "$file" /destination/
+  # Example: rm "$file"
+
+  # Add a delay (in seconds) before the next action
+  sleep "$delay"
+}
+
+# Main loop to process files
+files_to_process=("file1.txt" "file2.txt" "file3.txt")
+
+for file in "${files_to_process[@]}"; do
+  # Replace 'your_action_here' with the actual action you want to perform
+  perform_action "$file" "your_action_here" 2
+done
+
+# Log script completion
+log_action "Script completed"
+
+# Output script completion to the screen
+echo "Script completed"
