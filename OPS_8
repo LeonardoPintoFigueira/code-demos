@@ -1,0 +1,16 @@
+# Assign a list of ten hobbies to a variable
+hobbies = ["Reading", "Play vidio games", "Painting", "Cooking", "Photography", "Jogging", "Playing a Musical Instrument", "Yoga", "Hacking", "Coding"]
+
+# Print the fourth element of the list (index 3 since Python uses 0-based indexing)
+print("The fourth element of the list is:", hobbies[3])
+print("\n")
+
+# Print the sixth through tenth element of the list (indices 5 through 9)
+print("The sixth through tenth elements of the list are:", hobbies[5:10])
+print("\n")
+
+# Change the value of the seventh element to "onion"
+hobbies[6] = "Onion"
+
+# Print the modified list
+print("The list with the seventh element changed to 'Onion':", hobbies)
